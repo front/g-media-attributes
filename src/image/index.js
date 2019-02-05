@@ -89,6 +89,10 @@ const blockAttributes = {
     selector: 'figure > a',
     attribute: 'target',
   },
+  dataAttrs: {
+    type: 'object',
+    default: {},
+  },
 };
 
 const imageSchema = {
@@ -269,6 +273,7 @@ export const settings = {
       height,
       id,
       linkTarget,
+      dataAttrs,
     } = attributes;
 
     const classes = classnames({
@@ -283,6 +288,7 @@ export const settings = {
         className={ id ? `wp-image-${id}` : null }
         width={ width }
         height={ height }
+        { ...dataAttrs }
       />
     );
 

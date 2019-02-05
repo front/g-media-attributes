@@ -175,6 +175,7 @@ class ImageEdit extends Component {
         alt: undefined,
         id: undefined,
         caption: undefined,
+        dataAttrs: {},
       });
       return;
     }
@@ -188,6 +189,14 @@ class ImageEdit extends Component {
       width: undefined,
       height: undefined,
     });
+
+    if(media.data) {
+      const dataAttrs = Object.keys(media.data).reduce((d, k) => {
+        d[ `data-${k.replace(/_/g, '-')}` ] = media.data[k];
+        return d;
+      }, {});
+      this.props.setAttributes({ dataAttrs });
+    }
   }
 
   onSetLinkDestination (value) {
