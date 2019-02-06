@@ -16,15 +16,15 @@ async function getMediaAttrs (id) {
 }
 
 
-export function editWithDataAttrs (EditComponent) {
+export function editWithDataAttrs (EditComponent, trackField = 'id') {
   return class extends Component {
 
     componentDidMount () {
-      this.id = this.props.attributes && this.props.attributes.id;
+      this.id = this.props.attributes && this.props.attributes[trackField];
     }
 
     async componentDidUpdate () {
-      const id = this.props.attributes && this.props.attributes.id;
+      const id = this.props.attributes && this.props.attributes[trackField];
       if(id !== this.id) {
         this.id = id;
         const dataAttrs = await getMediaAttrs(this.id);
@@ -44,7 +44,7 @@ function updateTree (node, attrs) {
     return;
   }
   const { type, props } = node;
-  if(type === 'img') {
+  if(type === 'img' || type === 'video' || (props.style && props.style.backgroundImage)) {
     node.props = {
       ...props, ...attrs,
     };
