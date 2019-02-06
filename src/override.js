@@ -1,7 +1,5 @@
 
-import { blocks, element, apiFetch } from 'wp';
-
-const { registerBlockType, unregisterBlockType } = blocks;
+import { element, apiFetch } from 'wp';
 const { Component } = element;
 
 
@@ -71,26 +69,4 @@ export function saveWithDataAttrs (saveFunc) {
     updateTree(tree, dataAttrs);
     return tree;
   };
-}
-
-
-export default function () {
-  // Unregister and retrieve the image block
-  const image = unregisterBlockType('core/image');
-
-  // Add new attribute
-  image.attributes.dataAttrs = {
-    type: 'object',
-    default: {},
-  };
-
-  // Override save component
-  image.save = saveWithDataAttrs(image.save);
-
-  // Override edit component
-  image.edit = editWithDataAttrs(image.edit);
-
-
-  // Register the image again
-  registerBlockType('core/image', image);
 }

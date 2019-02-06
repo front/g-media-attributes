@@ -1,15 +1,16 @@
 
-// import { blocks } from 'wp';
-// const { registerBlockType, unregisterBlockType } = blocks;
-
-// import { name, settings } from './image';
-
-// setTimeout(() => {
-// unregisterBlockType(name);
-// registerBlockType(name, settings);
-// });
+import { hooks } from 'wp';
+import { editWithDataAttrs, saveWithDataAttrs } from './override';
 
 
-import overrideImage from './override';
-setTimeout(overrideImage);
-
+hooks.addFilter('blocks.registerBlockType', 'gjs.image.register', (settings, type) => {
+  if(type === 'core/image') {
+    settings.attributes.dataAttrs = {
+      type: 'object',
+      default: {},
+    };
+    settings.edit = editWithDataAttrs(settings.edit);
+    settings.save = saveWithDataAttrs(settings.save);
+  }
+  return settings;
+});
