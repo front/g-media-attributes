@@ -3,7 +3,7 @@ import { element, apiFetch } from 'wp';
 const { Component } = element;
 
 
-async function getMediaAttrs (id) {
+export async function getMediaAttrs (id) {
   const media = id && await apiFetch({ path: `/wp/v2/media/${id}` });
 
   if(media && media.data) {
@@ -39,7 +39,7 @@ export function editWithMediaAttrs (EditComponent, trackField = 'id') {
 }
 
 
-function updateTree (node, attrs) {
+export function updateTree (node, attrs) {
   if(!node || !node.props) {
     return;
   }
@@ -62,11 +62,11 @@ function updateTree (node, attrs) {
 }
 
 
-export function saveWithMediaAttrs (saveFunc) {
+export function saveWithMediaAttrs (saveFunc, updateFunc = updateTree) {
   return function (props) {
     const mediaAttrs = (props && props.attributes && props.attributes.mediaAttrs) || {};
     const tree = saveFunc(props);
-    updateTree(tree, mediaAttrs);
+    updateFunc(tree, mediaAttrs);
     return tree;
   };
 }
