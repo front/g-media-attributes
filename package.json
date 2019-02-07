@@ -1,5 +1,5 @@
 {
-  "name": "g-media-attributes",
+  "name": "@frontkom/g-media-attributes",
   "version": "1.0.0",
   "description": "A set of block overrides to support drupal media attributes",
   "main": "build/index.js",
@@ -26,5 +26,6 @@
     "eslint-plugin-react": "^7.12.4",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1"
-  }
+  },
+  "license": "MIT"
 }
