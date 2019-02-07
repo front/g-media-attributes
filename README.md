@@ -2,6 +2,21 @@
 > A set of extensions for core media blocks in order to support Drupal's media attributes.
 
 
+### How to use
+
+Install the package from NPM.
+
+```
+$ npm install @frontkom/g-media-attributes
+```
+
+Add to the editor before the core blocks are loaded:
+
+```
+import '@frontkom/g-media-attributes';
+```
+
+
 ### Motivation
 
 In order to fully support Drupal's file entity when handling images on Gutenberg editor, the <img /> tags on core media blocks need to have the `data-entity-uuid` and `data-entity-type` attributes.
@@ -40,19 +55,11 @@ When an image is selected, the Edit HOC captures that event and fecthes the addi
 On save, the Save HOC updates the rendered tree with the necessary attributes for each media element.
 
 
-## How to use
+### Known issues
 
-Install the package from NPM.
+- core/gallery
 
-```
-$ npm install @frontkom/g-media-attributes
-```
-
-Add to the editor before the core blocks are loaded:
-
-```
-import '@frontkom/g-media-attributes';
-```
+Currently the block validation for `core/gallery` throws an error to the console. However, this does not affect the loading of the block itself. It seems to be caused the difference in number of attributes present on each of the gallery items (expected vs actual). More discovery is needed.
 
 
 ## License
