@@ -7,8 +7,8 @@ async function getMediaAttrs (id) {
   const media = id && await apiFetch({ path: `/wp/v2/media/${id}` });
 
   if(media && media.data) {
-    return Object.keys(media.data).reduce((d, k) => {
-      d[`data-${k.replace(/_/g, '-')}`] = media.data[k];
+    return Object.keys(media.data).reduce((d, key) => {
+      d[`data-${key.toLowerCase().replace(/[^a-z0-9]/g, '-')}`] = media.data[key];
       return d;
     }, {});
   }
@@ -16,7 +16,7 @@ async function getMediaAttrs (id) {
 }
 
 
-export function editWithDataAttrs (EditComponent, trackField = 'id') {
+export function editWithMediaAttrs (EditComponent, trackField = 'id') {
   return class extends Component {
 
     componentDidMount () {
@@ -27,8 +27,8 @@ export function editWithDataAttrs (EditComponent, trackField = 'id') {
       const id = this.props.attributes && this.props.attributes[trackField];
       if(id !== this.id) {
         this.id = id;
-        const dataAttrs = await getMediaAttrs(this.id);
-        this.props.setAttributes({ dataAttrs });
+        const mediaAttrs = await getMediaAttrs(this.id);
+        this.props.setAttributes({ mediaAttrs });
       }
     }
 
@@ -62,11 +62,11 @@ function updateTree (node, attrs) {
 }
 
 
-export function saveWithDataAttrs (saveFunc) {
+export function saveWithMediaAttrs (saveFunc) {
   return function (props) {
-    const dataAttrs = (props && props.attributes && props.attributes.dataAttrs) || {};
+    const mediaAttrs = (props && props.attributes && props.attributes.mediaAttrs) || {};
     const tree = saveFunc(props);
-    updateTree(tree, dataAttrs);
+    updateTree(tree, mediaAttrs);
     return tree;
   };
 }

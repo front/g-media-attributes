@@ -1,6 +1,6 @@
 
 import { hooks } from 'wp';
-import { editWithDataAttrs, saveWithDataAttrs } from './override';
+import { editWithMediaAttrs, saveWithMediaAttrs } from './override';
 
 
 hooks.addFilter('blocks.registerBlockType', 'g-js.media.register', (settings, type) => {
@@ -11,7 +11,7 @@ hooks.addFilter('blocks.registerBlockType', 'g-js.media.register', (settings, ty
     type === 'core/cover'
   ) {
     // Set a new attribute
-    settings.attributes.dataAttrs = {
+    settings.attributes.mediaAttrs = {
       type: 'object',
       default: {},
     };
@@ -19,8 +19,8 @@ hooks.addFilter('blocks.registerBlockType', 'g-js.media.register', (settings, ty
     const trackField = type === 'core/media-text' ? 'mediaId' : 'id';
 
     // Override the edit and save components
-    settings.edit = editWithDataAttrs(settings.edit, trackField);
-    settings.save = saveWithDataAttrs(settings.save);
+    settings.edit = editWithMediaAttrs(settings.edit, trackField);
+    settings.save = saveWithMediaAttrs(settings.save);
   }
 
   if(type === 'core/gallery') {
