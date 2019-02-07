@@ -59,7 +59,7 @@ On save, the Save HOC updates the rendered tree with the necessary attributes fo
 
 - core/gallery
 
-Currently the block validation for `core/gallery` throws an error to the console. However, this does not affect the loading of the block itself. It seems to be caused the difference in number of attributes present on each of the gallery items (expected vs actual). More discovery is needed.
+Currently the block validation for `core/gallery` throws an error to the console. However, this does not affect the loading of the block itself. It seems to be caused by the difference in number of attributes present on each of the gallery items (expected vs actual). More discovery is needed.
 
 
 ## License
