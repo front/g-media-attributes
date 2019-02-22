@@ -1,7 +1,7 @@
 {
   "name": "@frontkom/g-media-attributes",
   "version": "1.0.1",
-  "description": "A set of block overrides to support drupal media attributes",
+  "description": "A set of extensions for core media blocks in order to support Drupal's media attributes.",
   "main": "build/index.js",
   "scripts": {
     "build": "NODE_ENV=production webpack",
