@@ -8,6 +8,8 @@ hooks.addFilter('blocks.registerBlockType', 'g-js.media.register', (settings, ty
   if(
     type === 'core/image' ||
     type === 'core/video' ||
+    type === 'core/audio' ||
+    type === 'core/file' ||
     type === 'core/media-text' ||
     type === 'core/cover'
   ) {
