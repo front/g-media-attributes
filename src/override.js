@@ -44,7 +44,7 @@ export function updateTree (node, attrs) {
     return;
   }
   const { type, props } = node;
-  if(type === 'img' || type === 'video' || (props.style && props.style.backgroundImage)) {
+  if(type === 'img' || type === 'video' || type === 'audio' || (props.className && props.className.includes('wp-block-file__button')) || (props.style && props.style.backgroundImage)) {
     node.props = {
       ...props, ...attrs,
     };
