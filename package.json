@@ -1,6 +1,6 @@
 {
   "name": "@frontkom/g-media-attributes",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A set of extensions for core media blocks in order to support Drupal's media attributes.",
   "main": "build/index.js",
   "scripts": {
